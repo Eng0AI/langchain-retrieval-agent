@@ -123,6 +123,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@anthropic-ai/sdk@npm:^0.65.0":
+  version: 0.65.0
+  resolution: "@anthropic-ai/sdk@npm:0.65.0"
+  dependencies:
+    json-schema-to-ts: ^3.1.1
+  peerDependencies:
+    zod: ^3.25.0 || ^4.0.0
+  peerDependenciesMeta:
+    zod:
+      optional: true
+  bin:
+    anthropic-ai-sdk: bin/cli
+  checksum: d8c31aab2b0573455abd86793995cd6a24e6a7d5b85c8c66e8896309c42b1029fb3616caad688d9e8e53bb43fc96979ba10b07bce7048a2971e46e83a73e38d8
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.18.3":
+  version: 7.28.4
+  resolution: "@babel/runtime@npm:7.28.4"
+  checksum: 934b0a0460f7d06637d93fcd1a44ac49adc33518d17253b5a0b55ff4cb90a45d8fe78bf034b448911dbec7aff2a90b918697559f78d21c99ff8dbadae9565b55
+  languageName: node
+  linkType: hard
+
 "@cfworker/json-schema@npm:^4.0.2":
   version: 4.1.1
   resolution: "@cfworker/json-schema@npm:4.1.1"
@@ -235,6 +258,13 @@ __metadata:
   version: 0.2.10
   resolution: "@floating-ui/utils@npm:0.2.10"
   checksum: ffc4c24a46a665cfd0337e9aaf7de8415b572f8a0f323af39175e4b575582aed13d172e7f049eedeece9eaf022bad019c140a2d192580451984ae529bdf1285c
+  languageName: node
+  linkType: hard
+
+"@google/generative-ai@npm:^0.24.0":
+  version: 0.24.1
+  resolution: "@google/generative-ai@npm:0.24.1"
+  checksum: d999b98acf1a6dba36a3e3693e02fde270c21b8d20333e2d458cf085e90508b24fad6c8d05d9475817fdf9d1ff1bf4082c86a4b09d2e59af739d391e59bca7ed
   languageName: node
   linkType: hard
 
@@ -586,6 +616,18 @@ __metadata:
   version: 4.4.2
   resolution: "@js-sdsl/ordered-map@npm:4.4.2"
   checksum: a927ae4ff8565ecb75355cc6886a4f8fadbf2af1268143c96c0cce3ba01261d241c3f4ba77f21f3f017a00f91dfe9e0673e95f830255945c80a0e96c6d30508a
+  languageName: node
+  linkType: hard
+
+"@langchain/anthropic@npm:^0.3.16":
+  version: 0.3.33
+  resolution: "@langchain/anthropic@npm:0.3.33"
+  dependencies:
+    "@anthropic-ai/sdk": ^0.65.0
+    fast-xml-parser: ^4.4.1
+  peerDependencies:
+    "@langchain/core": ">=0.3.58 <0.4.0"
+  checksum: d054adee5285bba6375d352ef5a5eb017a29724609b25c89b5e915351fc56cb78b4359c5588d79d707085e460e7266108c67955e2874cd54e7b8168619dc9bb1
   languageName: node
   linkType: hard
 
@@ -999,6 +1041,18 @@ __metadata:
     zod: ^3.25.32
     zod-to-json-schema: ^3.22.3
   checksum: 1cd7431a237f90a8bcd67d135e802173a4bf742d514452f22e6f5537be2d29d54849c6465c2fbe8e2048174bb75f44f795f8f85910c8e1df981d013c37d5cd95
+  languageName: node
+  linkType: hard
+
+"@langchain/google-genai@npm:^0.1.9":
+  version: 0.1.12
+  resolution: "@langchain/google-genai@npm:0.1.12"
+  dependencies:
+    "@google/generative-ai": ^0.24.0
+    zod-to-json-schema: ^3.22.4
+  peerDependencies:
+    "@langchain/core": ">=0.3.17 <0.4.0"
+  checksum: 45471147b47bbcd28d991e2d21f2196f777e3d48f8de491e3a86da0ddec28a87bd2f8d35a67fd8c101f1818df904367dec67462672f514b1b57ac318663f6c7f
   languageName: node
   linkType: hard
 
@@ -3620,6 +3674,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-xml-parser@npm:^4.4.1":
+  version: 4.5.3
+  resolution: "fast-xml-parser@npm:4.5.3"
+  dependencies:
+    strnum: ^1.1.1
+  bin:
+    fxparser: src/cli/cli.js
+  checksum: cd6a184941ec6c23f9e6b514421a3f396cfdff5f4a8c7c27bd0eff896edb4a2b55c27da16f09b789663613dfc4933602b9b71ac3e9d1d2ddcc0492fc46c8fa52
+  languageName: node
+  linkType: hard
+
 "fastq@npm:^1.6.0":
   version: 1.19.1
   resolution: "fastq@npm:1.19.1"
@@ -4520,6 +4585,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-schema-to-ts@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "json-schema-to-ts@npm:3.1.1"
+  dependencies:
+    "@babel/runtime": ^7.18.3
+    ts-algebra: ^2.0.0
+  checksum: b616f1c2d7492502e11eec4f8e4539ee1e897543a679d929494afdc164d9557275cead8372747b73f239b1e68056ffbf551b03ae82d0047bba0dfe2bbd6b64f4
+  languageName: node
+  linkType: hard
+
 "json-schema-traverse@npm:^0.4.1":
   version: 0.4.1
   resolution: "json-schema-traverse@npm:0.4.1"
@@ -4597,8 +4672,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "langchain-retrieval-agent@workspace:."
   dependencies:
+    "@langchain/anthropic": ^0.3.16
     "@langchain/community": ^0.3.37
     "@langchain/core": ^0.3.43
+    "@langchain/google-genai": ^0.1.9
     "@langchain/langgraph": ^0.2.57
     "@langchain/openai": ^0.4.9
     "@langchain/textsplitters": ^0.1.0
@@ -6537,6 +6614,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"strnum@npm:^1.1.1":
+  version: 1.1.2
+  resolution: "strnum@npm:1.1.2"
+  checksum: a85219eda13e97151c95e343a9e5960eacfb0a0ff98104b4c9cb7a212e3008bddf0c9714c9c37c2e508be78e741a04afc80027c2dc18509d1b5ffd4c37191fc2
+  languageName: node
+  linkType: hard
+
 "styled-jsx@npm:5.1.6":
   version: 5.1.6
   resolution: "styled-jsx@npm:5.1.6"
@@ -6739,6 +6823,13 @@ __metadata:
   version: 0.0.3
   resolution: "tr46@npm:0.0.3"
   checksum: 726321c5eaf41b5002e17ffbd1fb7245999a073e8979085dacd47c4b4e8068ff5777142fc6726d6ca1fd2ff16921b48788b87225cbc57c72636f6efa8efbffe3
+  languageName: node
+  linkType: hard
+
+"ts-algebra@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "ts-algebra@npm:2.0.0"
+  checksum: 970b0e7db49cf8c1a8ff2a816eb047fac8add47511f5e4995e4998c56c6f7b226399284412de88f3e137ab55c857a4262c0d8f02f0765730e7d3a021de2ea7ef
   languageName: node
   linkType: hard
 
@@ -7358,7 +7449,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod-to-json-schema@npm:^3.22.3, zod-to-json-schema@npm:^3.23.2, zod-to-json-schema@npm:^3.23.3":
+"zod-to-json-schema@npm:^3.22.3, zod-to-json-schema@npm:^3.22.4, zod-to-json-schema@npm:^3.23.2, zod-to-json-schema@npm:^3.23.3":
   version: 3.25.0
   resolution: "zod-to-json-schema@npm:3.25.0"
   peerDependencies:

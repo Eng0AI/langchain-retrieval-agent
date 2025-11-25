@@ -6,18 +6,18 @@
  * Required environment variables:
  * - LLM_PROVIDER: "openai" | "anthropic" | "google"
  * - LLM_MODEL: Model ID (e.g., "gpt-4o", "claude-sonnet-4-5-20250514", "gemini-2.5-flash")
+ * - OPENAI_API_KEY: Always required for embeddings (OpenAI embeddings used for all providers)
  *
  * API key environment variables per provider:
- * - OpenAI: OPENAI_API_KEY
- * - Anthropic: ANTHROPIC_API_KEY
- * - Google: GOOGLE_API_KEY
+ * - OpenAI: OPENAI_API_KEY (also used for embeddings)
+ * - Anthropic: ANTHROPIC_API_KEY + OPENAI_API_KEY (for embeddings)
+ * - Google: GOOGLE_API_KEY + OPENAI_API_KEY (for embeddings)
  */
 
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { ChatAnthropic } from "@langchain/anthropic";
-import { ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import type { BaseChatModel } from "@langchain/core/language_models/chat_models";
-import type { Embeddings } from "@langchain/core/embeddings";
 
 export type LLMProviderType = "openai" | "anthropic" | "google";
 
@@ -84,23 +84,9 @@ export function getChatModel(options?: { temperature?: number }): BaseChatModel 
 }
 
 /**
- * Get the embeddings model based on environment configuration
- * Note: Anthropic doesn't have embeddings, so we use OpenAI as fallback
+ * Get the embeddings model - always uses OpenAI embeddings
+ * Requires OPENAI_API_KEY to be set regardless of chat model provider
  */
-export function getEmbeddings(): Embeddings {
-  const provider = getLLMProvider();
-
-  switch (provider) {
-    case "google":
-      return new GoogleGenerativeAIEmbeddings({
-        model: "text-embedding-004",
-      });
-    case "anthropic":
-      // Anthropic doesn't have embeddings API, use OpenAI
-      // Requires OPENAI_API_KEY to be set alongside ANTHROPIC_API_KEY
-      return new OpenAIEmbeddings();
-    case "openai":
-    default:
-      return new OpenAIEmbeddings();
-  }
+export function getEmbeddings() {
+  return new OpenAIEmbeddings();
 }
