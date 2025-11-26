@@ -35,55 +35,19 @@ done < .env.example
 
 Or manually inspect `.env.example` and create `.env` with the required values from environment variables.
 
-### 2. Setup Supabase Vector Store
-
-Run this SQL in your Supabase SQL editor to create the required table and function:
-
-```sql
--- Enable the pgvector extension
-create extension if not exists vector;
-
--- Create the documents table
-create table if not exists documents (
-  id bigserial primary key,
-  content text,
-  metadata jsonb,
-  embedding vector(1536)
-);
-
--- Create the matching function
-create or replace function match_documents (
-  query_embedding vector(1536),
-  match_count int default null,
-  filter jsonb default '{}'
-) returns table (
-  id bigint,
-  content text,
-  metadata jsonb,
-  similarity float
-)
-language plpgsql
-as $$
-begin
-  return query
-  select
-    documents.id,
-    documents.content,
-    documents.metadata,
-    1 - (documents.embedding <=> query_embedding) as similarity
-  from documents
-  where documents.metadata @> filter
-  order by documents.embedding <=> query_embedding
-  limit match_count;
-end;
-$$;
-```
-
-### 3. Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 yarn install
 ```
+
+### 3. Setup Supabase Vector Store
+
+```bash
+yarn setup-db
+```
+
+This creates the pgvector extension, documents table, and match_documents function in your Supabase project.
 
 ### 4. Build
 
@@ -119,8 +83,8 @@ netlify deploy --prod
 
 ## Critical Notes
 
-- **Supabase Required:** Must setup Supabase project with pgvector extension
-- **Vector Store Setup:** Run SQL migration before using the app
+- **Supabase Required:** Need a Supabase project (free tier works)
+- **Vector Store Setup:** Run `yarn setup-db` to create tables automatically
 - **Environment Variables:** All values come from current environment - inspect `.env.example` for required variables
 - **OpenAI for Embeddings:** OPENAI_API_KEY is always required for vector embeddings
 - **No Dev Server:** Never run `yarn dev` in VM environment
