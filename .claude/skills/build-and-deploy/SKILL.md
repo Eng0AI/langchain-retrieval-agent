@@ -5,10 +5,6 @@ description: Build and deploy this Next.js LangChain retrieval agent application
 
 # Build and Deploy LangChain Retrieval Agent
 
-## Overview
-
-Build and deploy the LangChain.js retrieval agent application. This Next.js project provides an AI agent with retrieval tool for document Q&A using RAG, powered by LangGraph and Supabase vector store.
-
 ## Workflow
 
 ### 1. Setup Environment Variables
@@ -128,11 +124,3 @@ netlify deploy --prod
 - **Environment Variables:** All values come from current environment - inspect `.env.example` for required variables
 - **OpenAI for Embeddings:** OPENAI_API_KEY is always required for vector embeddings
 - **No Dev Server:** Never run `yarn dev` in VM environment
-
-## Features
-
-- AI agent with retrieval tool via LangGraph
-- Document ingestion with text splitting
-- Vector embeddings with OpenAI
-- Retrieval-augmented generation (RAG)
-- Streaming responses with Vercel AI SDK
