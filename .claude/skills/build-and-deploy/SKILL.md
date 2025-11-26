@@ -5,6 +5,9 @@ description: Build and deploy this Next.js LangChain retrieval agent application
 
 # Build and Deploy LangChain Retrieval Agent
 
+> **CRITICAL: For Vercel, you MUST use `vercel build --prod` then `vercel deploy --prebuilt --prod`.**
+> Do NOT use `vercel --prod` or `vercel deploy --prod` directly - these will fail due to Git author permission issues in VM environments.
+
 ## Workflow
 
 ### 1. Setup Environment Variables
@@ -87,6 +90,7 @@ netlify deploy --prod
 
 ## Critical Notes
 
+- **VERCEL PREBUILT MODE IS MANDATORY:** Always use `vercel build --prod` followed by `vercel deploy --prebuilt --prod`. Never use `vercel --prod` or `vercel deploy --prod` without `--prebuilt` flag.
 - **Supabase Required:** Need a Supabase project (free tier works)
 - **Vector Store Setup:** Run `yarn setup-db` to create tables automatically
 - **Environment Variables:** All values come from current environment - inspect `.env.example` for required variables
