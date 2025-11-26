@@ -88,5 +88,7 @@ export function getChatModel(options?: { temperature?: number }): BaseChatModel 
  * Requires OPENAI_API_KEY to be set regardless of chat model provider
  */
 export function getEmbeddings() {
-  return new OpenAIEmbeddings();
+  return new OpenAIEmbeddings({
+    model: "text-embedding-3-small",
+  });
 }

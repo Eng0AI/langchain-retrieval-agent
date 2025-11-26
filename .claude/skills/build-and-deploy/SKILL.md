@@ -43,6 +43,10 @@ yarn install
 
 ### 3. Setup Supabase Vector Store
 
+Get the database connection URL from Supabase Dashboard:
+- Go to Settings → Database → Connection string → URI
+- Copy the URI and add it to `.env` as `SUPABASE_DB_URL`
+
 ```bash
 yarn setup-db
 ```
