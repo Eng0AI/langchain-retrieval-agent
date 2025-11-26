@@ -2,6 +2,8 @@ import "./globals.css";
 import { Public_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const publicSans = Public_Sans({ subsets: ["latin"] });
 
@@ -33,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <title>LangChain Retrieval Agent</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -56,60 +58,67 @@ export default function RootLayout({
         <meta name="twitter:image" content="/images/og-image.png" />
       </head>
       <body className={publicSans.className}>
-        <NuqsAdapter>
-          <div className="bg-secondary grid grid-rows-[auto,1fr] h-[100dvh]">
-            <div className="grid grid-cols-[1fr,auto] gap-2 p-4">
-              <div className="flex gap-4 flex-col md:flex-row md:items-center">
-                <a
-                  href="https://js.langchain.com"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="flex items-center gap-2"
-                >
-                  <Logo />
-                </a>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NuqsAdapter>
+            <div className="bg-secondary grid grid-rows-[auto,1fr] h-[100dvh]">
+              <div className="grid grid-cols-[1fr,auto] gap-2 p-4">
+                <div className="flex gap-4 flex-col md:flex-row md:items-center">
+                  <a
+                    href="https://js.langchain.com"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="flex items-center gap-2"
+                  >
+                    <Logo />
+                  </a>
+                </div>
+                <ThemeToggle />
               </div>
-
+              {/* Built by eng0.ai Corner Ribbon */}
+              <a
+                href="https://eng0.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed top-0 right-0 z-50 cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                <svg width="120" height="120" viewBox="0 0 250 250">
+                  <path d="M0,0 L250,250 L250,0 Z" fill="#3b82f6" />
+                  <text
+                    x="175"
+                    y="58"
+                    fill="#ffffff"
+                    fontSize="20"
+                    fontWeight="bold"
+                    transform="rotate(45, 175, 58)"
+                    textAnchor="middle"
+                  >
+                    Built by
+                  </text>
+                  <text
+                    x="165"
+                    y="88"
+                    fill="#ffffff"
+                    fontSize="28"
+                    fontWeight="bold"
+                    transform="rotate(45, 165, 88)"
+                    textAnchor="middle"
+                  >
+                    eng0.ai
+                  </text>
+                </svg>
+              </a>
+              <div className="bg-background mx-4 relative grid rounded-t-2xl border border-input border-b-0">
+                <div className="absolute inset-0">{children}</div>
+              </div>
             </div>
-            {/* Built by eng0.ai Corner Ribbon */}
-            <a
-              href="https://eng0.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="fixed top-0 right-0 z-50 cursor-pointer hover:opacity-80 transition-opacity"
-            >
-              <svg width="120" height="120" viewBox="0 0 250 250">
-                <path d="M0,0 L250,250 L250,0 Z" fill="#3b82f6" />
-                <text
-                  x="175"
-                  y="58"
-                  fill="#ffffff"
-                  fontSize="20"
-                  fontWeight="bold"
-                  transform="rotate(45, 175, 58)"
-                  textAnchor="middle"
-                >
-                  Built by
-                </text>
-                <text
-                  x="165"
-                  y="88"
-                  fill="#ffffff"
-                  fontSize="28"
-                  fontWeight="bold"
-                  transform="rotate(45, 165, 88)"
-                  textAnchor="middle"
-                >
-                  eng0.ai
-                </text>
-              </svg>
-            </a>
-            <div className="bg-background mx-4 relative grid rounded-t-2xl border border-input border-b-0">
-              <div className="absolute inset-0">{children}</div>
-            </div>
-          </div>
-          <Toaster />
-        </NuqsAdapter>
+            <Toaster />
+          </NuqsAdapter>
+        </ThemeProvider>
       </body>
     </html>
   );
