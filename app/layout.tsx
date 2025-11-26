@@ -65,18 +65,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NuqsAdapter>
-            <div className="bg-secondary grid grid-rows-[auto,1fr] h-[100dvh]">
-              <div className="grid grid-cols-[1fr,auto] gap-2 p-4">
-                <div className="flex gap-4 flex-col md:flex-row md:items-center">
-                  <a
-                    href="https://js.langchain.com"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="flex items-center gap-2"
-                  >
-                    <Logo />
-                  </a>
-                </div>
+            <div className="bg-background h-[100dvh] relative">
+              <div className="absolute top-4 left-4 z-50">
                 <ThemeToggle />
               </div>
               {/* Built by eng0.ai Corner Ribbon */}
@@ -112,9 +102,7 @@ export default function RootLayout({
                   </text>
                 </svg>
               </a>
-              <div className="bg-background mx-4 relative grid rounded-t-2xl border border-input border-b-0">
-                <div className="absolute inset-0">{children}</div>
-              </div>
+              <div className="h-full">{children}</div>
             </div>
             <Toaster />
           </NuqsAdapter>
