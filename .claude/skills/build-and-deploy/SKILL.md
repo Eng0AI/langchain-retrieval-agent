@@ -65,23 +65,32 @@ yarn build
 ### 5. Deploy
 
 **Vercel:**
+
+All vercel CLI commands require `-t <token>` or `--token <token>` for authentication.
+
 ```bash
-# Set platform env vars (first time only, use printf NOT echo to avoid newline issues)
+# Pull project settings (also links project, creates .vercel/project.json)
+vercel pull --yes -t $VERCEL_TOKEN
+
+# Push env vars to Vercel (first time only)
+# Must add to each environment separately
 while IFS='=' read -r key value; do
-  [[ "$key" =~ ^#.*$ || -z "$key" ]] && continue
-  printf "%s" "$value" | vercel env add "$key" production
+  [[ "$key" =~ ^#.*$ || -z "$key" || -z "$value" ]] && continue
+  for env in production preview development; do
+    printf '%s' "$value" | vercel env add "$key" $env -t $VERCEL_TOKEN
+  done
 done < .env
 
 # Build locally for production
-vercel build --prod
+vercel build --prod -t $VERCEL_TOKEN
 
-# Deploy prebuilt (bypasses Git author permission issues)
-vercel deploy --prebuilt --prod --yes
+# Deploy prebuilt
+vercel deploy --prebuilt --prod --yes -t $VERCEL_TOKEN
 ```
 
 **Netlify:**
 ```bash
-# Set platform env vars (first time only)
+# Import all env vars from .env (first time only)
 netlify env:import .env
 
 # Deploy
